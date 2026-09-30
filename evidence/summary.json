@@ -1,0 +1,48 @@
+{
+  "conditions": {
+    "raw-board": {
+      "hits": 4,
+      "total": 8,
+      "errors": 0
+    },
+    "computed-features": {
+      "hits": 8,
+      "total": 8,
+      "errors": 0
+    }
+  },
+  "successful_api_calls": 39,
+  "median_latency_ms": 682,
+  "input_tokens": 54165,
+  "matches": [
+    {
+      "jev_color": 2,
+      "plies": 22,
+      "complete": true,
+      "area": {
+        "black": 12,
+        "white": 13,
+        "komi": 6.5,
+        "white_total": 19.5,
+        "neutral": 0,
+        "lead": -7.5
+      },
+      "error": null
+    },
+    {
+      "jev_color": 1,
+      "plies": 23,
+      "complete": true,
+      "area": {
+        "black": 15,
+        "white": 10,
+        "komi": 6.5,
+        "white_total": 16.5,
+        "neutral": 0,
+        "lead": -1.5
+      },
+      "error": null
+    }
+  ],
+  "estimated_input_cost_usd": 0.00227493
+}

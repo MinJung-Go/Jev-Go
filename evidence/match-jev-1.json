@@ -1,0 +1,1564 @@
+{
+  "jev_color": 1,
+  "game": {
+    "size": 5,
+    "board": [
+      2,
+      2,
+      2,
+      0,
+      0,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    "turn": 2,
+    "moves": [
+      12,
+      6,
+      11,
+      7,
+      13,
+      8,
+      10,
+      5,
+      14,
+      9,
+      15,
+      0,
+      16,
+      18,
+      17,
+      1,
+      19,
+      23,
+      22,
+      2,
+      24,
+      null,
+      null
+    ],
+    "legal": [],
+    "passes": 2,
+    "over": true,
+    "captures": {
+      "1": 2,
+      "2": 0
+    },
+    "area": {
+      "black": 15,
+      "white": 10,
+      "komi": 6.5,
+      "white_total": 16.5,
+      "neutral": 0,
+      "lead": -1.5
+    }
+  },
+  "records": [
+    {
+      "ply": 1,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "C3",
+        "probabilities": {
+          "E5": 0.0,
+          "C3": 0.77,
+          "D5": 0.0,
+          "D2": 0.0,
+          "E4": 0.0,
+          "D1": 0.0,
+          "C1": 0.0,
+          "B1": 0.0,
+          "A4": 0.0,
+          "C2": 0.0,
+          "D4": 0.01,
+          "B3": 0.02,
+          "C4": 0.04,
+          "C5": 0.05,
+          "A3": 0.0,
+          "E1": 0.0,
+          "D3": 0.0,
+          "A2": 0.0,
+          "E3": 0.0,
+          "B5": 0.0,
+          "B4": 0.01,
+          "PASS": 0.060000000000000005,
+          "A1": 0.0,
+          "A5": 0.04,
+          "B2": 0.0,
+          "E2": 0.0
+        },
+        "confidence": 0.75,
+        "latency_ms": 682,
+        "usage": {
+          "input_tokens": 2088,
+          "output_tokens": 225
+        },
+        "candidate_count": 26
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "A5": "Play at A5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A4": "Play at A4. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B4": "Play at B4. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C4": "Play at C4. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D4": "Play at D4. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E4": "Play at E4. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A3": "Play at A3. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B3": "Play at B3. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C3": "Play at C3. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 2.",
+              "D3": "Play at D3. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E3": "Play at E3. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A2": "Play at A2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "C3",
+            "confidence": 0.75,
+            "probabilities": {
+              "E5": 0.0,
+              "C3": 0.77,
+              "D5": 0.0,
+              "D2": 0.0,
+              "E4": 0.0,
+              "D1": 0.0,
+              "C1": 0.0,
+              "B1": 0.0,
+              "A4": 0.0,
+              "C2": 0.0,
+              "D4": 0.01,
+              "B3": 0.02,
+              "C4": 0.04,
+              "C5": 0.05,
+              "A3": 0.0,
+              "E1": 0.0,
+              "D3": 0.0,
+              "A2": 0.0,
+              "E3": 0.0,
+              "B5": 0.0,
+              "B4": 0.01,
+              "PASS": 0.060000000000000005,
+              "A1": 0.0,
+              "A5": 0.04,
+              "B2": 0.0,
+              "E2": 0.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 2088,
+          "output_tokens": 225
+        }
+      }
+    },
+    {
+      "ply": 3,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "B3",
+        "probabilities": {
+          "B3": 0.25,
+          "D2": 0.01,
+          "D1": 0.0,
+          "A5": 0.02,
+          "B5": 0.02,
+          "C2": 0.13,
+          "D4": 0.04,
+          "A3": 0.03,
+          "C5": 0.02,
+          "D5": 0.01,
+          "E5": 0.0,
+          "E4": 0.01,
+          "B1": 0.0,
+          "PASS": 0.04,
+          "C1": 0.0,
+          "B2": 0.01,
+          "E1": 0.0,
+          "E2": 0.0,
+          "A2": 0.0,
+          "D3": 0.14,
+          "A4": 0.04,
+          "E3": 0.01,
+          "C4": 0.22,
+          "A1": 0.0
+        },
+        "confidence": 0.21,
+        "latency_ms": 706,
+        "usage": {
+          "input_tokens": 1967,
+          "output_tokens": 209
+        },
+        "candidate_count": 24
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            ".....",
+            ".O...",
+            "..X..",
+            ".....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "A5": "Play at A5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A4": "Play at A4. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C4": "Play at C4. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D4": "Play at D4. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E4": "Play at E4. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A3": "Play at A3. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B3": "Play at B3. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D3": "Play at D3. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E3": "Play at E3. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A2": "Play at A2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "B3",
+            "confidence": 0.21,
+            "probabilities": {
+              "B3": 0.25,
+              "D2": 0.01,
+              "D1": 0.0,
+              "A5": 0.02,
+              "B5": 0.02,
+              "C2": 0.13,
+              "D4": 0.04,
+              "A3": 0.03,
+              "C5": 0.02,
+              "D5": 0.01,
+              "E5": 0.0,
+              "E4": 0.01,
+              "B1": 0.0,
+              "PASS": 0.04,
+              "C1": 0.0,
+              "B2": 0.01,
+              "E1": 0.0,
+              "E2": 0.0,
+              "A2": 0.0,
+              "D3": 0.14,
+              "A4": 0.04,
+              "E3": 0.01,
+              "C4": 0.22,
+              "A1": 0.0
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1967,
+          "output_tokens": 209
+        }
+      }
+    },
+    {
+      "ply": 5,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "D3",
+        "probabilities": {
+          "B1": 0.0,
+          "C5": 0.04,
+          "A1": 0.0,
+          "C1": 0.01,
+          "D1": 0.0,
+          "A4": 0.05,
+          "A3": 0.17,
+          "D3": 0.3,
+          "E2": 0.0,
+          "E4": 0.01,
+          "PASS": 0.06,
+          "D5": 0.02,
+          "B5": 0.03,
+          "A5": 0.02,
+          "E5": 0.0,
+          "B2": 0.12,
+          "C2": 0.06,
+          "E3": 0.02,
+          "D2": 0.01,
+          "D4": 0.07,
+          "E1": 0.0,
+          "A2": 0.01
+        },
+        "confidence": 0.25,
+        "latency_ms": 662,
+        "usage": {
+          "input_tokens": 1844,
+          "output_tokens": 193
+        },
+        "candidate_count": 22
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            ".....",
+            ".OO..",
+            ".XX..",
+            ".....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "A5": "Play at A5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A4": "Play at A4. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D4": "Play at D4. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E4": "Play at E4. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A3": "Play at A3. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D3": "Play at D3. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E3": "Play at E3. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A2": "Play at A2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "D3",
+            "confidence": 0.25,
+            "probabilities": {
+              "B1": 0.0,
+              "C5": 0.04,
+              "A1": 0.0,
+              "C1": 0.01,
+              "D1": 0.0,
+              "A4": 0.05,
+              "A3": 0.17,
+              "D3": 0.3,
+              "E2": 0.0,
+              "E4": 0.01,
+              "PASS": 0.06,
+              "D5": 0.02,
+              "B5": 0.03,
+              "A5": 0.02,
+              "E5": 0.0,
+              "B2": 0.12,
+              "C2": 0.06,
+              "E3": 0.02,
+              "D2": 0.01,
+              "D4": 0.07,
+              "E1": 0.0,
+              "A2": 0.01
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1844,
+          "output_tokens": 193
+        }
+      }
+    },
+    {
+      "ply": 7,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "A3",
+        "probabilities": {
+          "D5": 0.02,
+          "E1": 0.0,
+          "E4": 0.03,
+          "B2": 0.15,
+          "D2": 0.04,
+          "B5": 0.03,
+          "A5": 0.01,
+          "E2": 0.01,
+          "C5": 0.04,
+          "A1": 0.0,
+          "C1": 0.02,
+          "A3": 0.28,
+          "B1": 0.01,
+          "E5": 0.01,
+          "E3": 0.07,
+          "A2": 0.01,
+          "A4": 0.05,
+          "D1": 0.0,
+          "PASS": 0.1,
+          "C2": 0.12
+        },
+        "confidence": 0.23,
+        "latency_ms": 702,
+        "usage": {
+          "input_tokens": 1720,
+          "output_tokens": 177
+        },
+        "candidate_count": 20
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            ".....",
+            ".OOO.",
+            ".XXX.",
+            ".....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "A5": "Play at A5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A4": "Play at A4. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E4": "Play at E4. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A3": "Play at A3. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E3": "Play at E3. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A2": "Play at A2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "A3",
+            "confidence": 0.23,
+            "probabilities": {
+              "D5": 0.02,
+              "E1": 0.0,
+              "E4": 0.03,
+              "B2": 0.15,
+              "D2": 0.04,
+              "B5": 0.03,
+              "A5": 0.01,
+              "E2": 0.01,
+              "C5": 0.04,
+              "A1": 0.0,
+              "C1": 0.02,
+              "A3": 0.28,
+              "B1": 0.01,
+              "E5": 0.01,
+              "E3": 0.07,
+              "A2": 0.01,
+              "A4": 0.05,
+              "D1": 0.0,
+              "PASS": 0.1,
+              "C2": 0.12
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1720,
+          "output_tokens": 177
+        }
+      }
+    },
+    {
+      "ply": 9,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "E3",
+        "probabilities": {
+          "E3": 0.35,
+          "D5": 0.06,
+          "E2": 0.04,
+          "A5": 0.03,
+          "C1": 0.01,
+          "A1": 0.01,
+          "D2": 0.07,
+          "PASS": 0.06,
+          "E4": 0.08,
+          "D1": 0.01,
+          "C5": 0.05,
+          "C2": 0.03,
+          "A2": 0.05,
+          "B5": 0.04,
+          "B2": 0.07,
+          "E1": 0.01,
+          "E5": 0.02,
+          "B1": 0.01
+        },
+        "confidence": 0.31,
+        "latency_ms": 705,
+        "usage": {
+          "input_tokens": 1595,
+          "output_tokens": 161
+        },
+        "candidate_count": 18
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            ".....",
+            "OOOO.",
+            "XXXX.",
+            ".....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "A5": "Play at A5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E4": "Play at E4. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E3": "Play at E3. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A2": "Play at A2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 6 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "E3",
+            "confidence": 0.31,
+            "probabilities": {
+              "E3": 0.35,
+              "D5": 0.06,
+              "E2": 0.04,
+              "A5": 0.03,
+              "C1": 0.01,
+              "A1": 0.01,
+              "D2": 0.07,
+              "PASS": 0.06,
+              "E4": 0.08,
+              "D1": 0.01,
+              "C5": 0.05,
+              "C2": 0.03,
+              "A2": 0.05,
+              "B5": 0.04,
+              "B2": 0.07,
+              "E1": 0.01,
+              "E5": 0.02,
+              "B1": 0.01
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1595,
+          "output_tokens": 161
+        }
+      }
+    },
+    {
+      "ply": 11,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "A2",
+        "probabilities": {
+          "A5": 0.03,
+          "D1": 0.01,
+          "A1": 0.02,
+          "A2": 0.25,
+          "B5": 0.03,
+          "PASS": 0.2,
+          "B2": 0.06,
+          "D5": 0.02,
+          "D2": 0.02,
+          "E5": 0.01,
+          "E1": 0.01,
+          "E2": 0.03,
+          "B1": 0.01,
+          "C5": 0.08,
+          "C2": 0.2,
+          "C1": 0.02
+        },
+        "confidence": 0.19,
+        "latency_ms": 708,
+        "usage": {
+          "input_tokens": 1470,
+          "output_tokens": 145
+        },
+        "candidate_count": 16
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            ".....",
+            "OOOOO",
+            "XXXXX",
+            ".....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "A5": "Play at A5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A2": "Play at A2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "A2",
+            "confidence": 0.19,
+            "probabilities": {
+              "A5": 0.03,
+              "D1": 0.01,
+              "A1": 0.02,
+              "A2": 0.25,
+              "B5": 0.03,
+              "PASS": 0.2,
+              "B2": 0.06,
+              "D5": 0.02,
+              "D2": 0.02,
+              "E5": 0.01,
+              "E1": 0.01,
+              "E2": 0.03,
+              "B1": 0.01,
+              "C5": 0.08,
+              "C2": 0.2,
+              "C1": 0.02
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1470,
+          "output_tokens": 145
+        }
+      }
+    },
+    {
+      "ply": 13,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "B2",
+        "probabilities": {
+          "D1": 0.02,
+          "B5": 0.05,
+          "D2": 0.04,
+          "C1": 0.04,
+          "B2": 0.19,
+          "PASS": 0.1,
+          "A1": 0.11,
+          "E1": 0.01,
+          "E2": 0.11,
+          "C5": 0.07,
+          "C2": 0.16,
+          "D5": 0.04,
+          "E5": 0.03,
+          "B1": 0.03
+        },
+        "confidence": 0.12,
+        "latency_ms": 667,
+        "usage": {
+          "input_tokens": 1348,
+          "output_tokens": 129
+        },
+        "candidate_count": 14
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            "O....",
+            "OOOOO",
+            "XXXXX",
+            "X....",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B2": "Play at B2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 5 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "B2",
+            "confidence": 0.12,
+            "probabilities": {
+              "D1": 0.02,
+              "B5": 0.05,
+              "D2": 0.04,
+              "C1": 0.04,
+              "B2": 0.19,
+              "PASS": 0.1,
+              "A1": 0.11,
+              "E1": 0.01,
+              "E2": 0.11,
+              "C5": 0.07,
+              "C2": 0.16,
+              "D5": 0.04,
+              "E5": 0.03,
+              "B1": 0.03
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1348,
+          "output_tokens": 129
+        }
+      }
+    },
+    {
+      "ply": 15,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "C2",
+        "probabilities": {
+          "D5": 0.05,
+          "E2": 0.21,
+          "A1": 0.05,
+          "B1": 0.09,
+          "E1": 0.01,
+          "C5": 0.07,
+          "C2": 0.29000000000000004,
+          "D1": 0.02,
+          "E5": 0.02,
+          "PASS": 0.1,
+          "B5": 0.02,
+          "C1": 0.07
+        },
+        "confidence": 0.22,
+        "latency_ms": 661,
+        "usage": {
+          "input_tokens": 1225,
+          "output_tokens": 113
+        },
+        "candidate_count": 12
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            "O....",
+            "OOOOO",
+            "XXXXX",
+            "XX.O.",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "B5": "Play at B5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C2": "Play at C2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "C2",
+            "confidence": 0.22,
+            "probabilities": {
+              "D5": 0.05,
+              "E2": 0.21,
+              "A1": 0.05,
+              "B1": 0.09,
+              "E1": 0.01,
+              "C5": 0.07,
+              "C2": 0.29000000000000004,
+              "D1": 0.02,
+              "E5": 0.02,
+              "PASS": 0.1,
+              "B5": 0.02,
+              "C1": 0.07
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1225,
+          "output_tokens": 113
+        }
+      }
+    },
+    {
+      "ply": 17,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "E2",
+        "probabilities": {
+          "PASS": 0.12,
+          "E1": 0.03,
+          "E5": 0.02,
+          "D5": 0.06,
+          "A1": 0.08,
+          "D1": 0.08,
+          "C5": 0.04,
+          "C1": 0.16,
+          "E2": 0.35,
+          "B1": 0.06
+        },
+        "confidence": 0.29,
+        "latency_ms": 695,
+        "usage": {
+          "input_tokens": 1101,
+          "output_tokens": 97
+        },
+        "candidate_count": 10
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            "OO...",
+            "OOOOO",
+            "XXXXX",
+            "XXXO.",
+            "....."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E2": "Play at E2. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "E2",
+            "confidence": 0.29,
+            "probabilities": {
+              "PASS": 0.12,
+              "E1": 0.03,
+              "E5": 0.02,
+              "D5": 0.06,
+              "A1": 0.08,
+              "D1": 0.08,
+              "C5": 0.04,
+              "C1": 0.16,
+              "E2": 0.35,
+              "B1": 0.06
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 1101,
+          "output_tokens": 97
+        }
+      }
+    },
+    {
+      "ply": 19,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "C1",
+        "probabilities": {
+          "A1": 0.16,
+          "B1": 0.14,
+          "C1": 0.22,
+          "D5": 0.12,
+          "PASS": 0.14,
+          "C5": 0.06,
+          "E5": 0.03,
+          "E1": 0.13
+        },
+        "confidence": 0.1,
+        "latency_ms": 662,
+        "usage": {
+          "input_tokens": 978,
+          "output_tokens": 81
+        },
+        "candidate_count": 8
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            "OO...",
+            "OOOOO",
+            "XXXXX",
+            "XXXOX",
+            "...O."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "C5": "Play at C5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "C1": "Play at C1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "C1",
+            "confidence": 0.1,
+            "probabilities": {
+              "A1": 0.16,
+              "B1": 0.14,
+              "C1": 0.22,
+              "D5": 0.12,
+              "PASS": 0.14,
+              "C5": 0.06,
+              "E5": 0.03,
+              "E1": 0.13
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 978,
+          "output_tokens": 81
+        }
+      }
+    },
+    {
+      "ply": 21,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "E1",
+        "probabilities": {
+          "D5": 0.0,
+          "B1": 0.01,
+          "E1": 0.94,
+          "PASS": 0.02,
+          "A1": 0.02,
+          "E5": 0.01
+        },
+        "confidence": 0.94,
+        "latency_ms": 700,
+        "usage": {
+          "input_tokens": 855,
+          "output_tokens": 65
+        },
+        "candidate_count": 6
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            "OOO..",
+            "OOOOO",
+            "XXXXX",
+            "XXXOX",
+            "..XO."
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": false,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 2 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E1": "Play at E1. Captures 2 opposing stones immediately; own resulting connected group has 4 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "E1",
+            "confidence": 0.94,
+            "probabilities": {
+              "D5": 0.0,
+              "B1": 0.01,
+              "E1": 0.94,
+              "PASS": 0.02,
+              "A1": 0.02,
+              "E5": 0.01
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 855,
+          "output_tokens": 65
+        }
+      }
+    },
+    {
+      "ply": 23,
+      "decision": {
+        "provider": "jev",
+        "model": "jev-1.13.0",
+        "choice": "PASS",
+        "probabilities": {
+          "B1": 0.07,
+          "D5": 0.03,
+          "A1": 0.08,
+          "E5": 0.02,
+          "D1": 0.13,
+          "PASS": 0.51,
+          "D2": 0.16
+        },
+        "confidence": 0.42,
+        "latency_ms": 682,
+        "usage": {
+          "input_tokens": 917,
+          "output_tokens": 72
+        },
+        "candidate_count": 7
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "game": "Go",
+          "board_size": 5,
+          "board_rows_top_to_bottom": [
+            "OOO..",
+            "OOOOO",
+            "XXXXX",
+            "XXX.X",
+            "..X.X"
+          ],
+          "columns": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "row_numbers_top_to_bottom": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "legend": {
+            "X": "black",
+            ".": "empty",
+            "O": "white"
+          },
+          "your_color": "black",
+          "previous_move_passed": true,
+          "white_komi": 6.5,
+          "note": "All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you."
+        },
+        "questions": {
+          "move": {
+            "type": "choice",
+            "instructions": "Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.",
+            "criteria": {
+              "D5": "Play at D5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "E5": "Play at E5. Captures 0 opposing stones immediately; own resulting connected group has 1 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D2": "Play at D2. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 1.",
+              "A1": "Play at A1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "B1": "Play at B1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "D1": "Play at D1. Captures 0 opposing stones immediately; own resulting connected group has 3 liberties; rescues 0 friendly stones from immediate atari; fills a point surrounded by own stones: False; distance from edge: 0.",
+              "PASS": "Pass. If the previous player also passed, end and score the current board."
+            }
+          }
+        }
+      },
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "move": {
+            "type": "choice",
+            "choice": "PASS",
+            "confidence": 0.42,
+            "probabilities": {
+              "B1": 0.07,
+              "D5": 0.03,
+              "A1": 0.08,
+              "E5": 0.02,
+              "D1": 0.13,
+              "PASS": 0.51,
+              "D2": 0.16
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 917,
+          "output_tokens": 72
+        }
+      }
+    }
+  ],
+  "error": null,
+  "complete": true,
+  "note": "Area counts remaining stones; no dead-stone adjudication. If ply limit reached, no winner declared."
+}

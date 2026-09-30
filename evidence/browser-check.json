@@ -1,0 +1,13 @@
+{
+  "errors": [],
+  "mobileOverflow": false,
+  "checks": [
+    "human moves",
+    "undo",
+    "two passes end",
+    "local opponent",
+    "live Jev opponent",
+    "record export",
+    "desktop and mobile screenshot"
+  ]
+}
