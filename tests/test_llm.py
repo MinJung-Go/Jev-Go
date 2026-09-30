@@ -34,4 +34,25 @@ class LLMTests(unittest.TestCase):
         offered=json.loads(p['messages'][1]['content'])
         self.assertEqual(offered['criteria'],g.payload()['questions']['move']['criteria'])
 
+    def test_deepseek_json_non_thinking_defaults(self):
+        opener=MagicMock();opener.open.return_value=self.result('{"choice":"B9"}')
+        with patch('llm.build_opener',return_value=opener):
+            _,_,payload,_=choose_llm(replay(9,[0],kind='gomoku'),{'base_url':'https://api.deepseek.com/v1','model':'deepseek-flash','api_key':'test'})
+        self.assertEqual(payload['response_format'],{'type':'json_object'})
+        self.assertEqual(payload['thinking'],{'type':'disabled'})
+        self.assertEqual(payload['max_tokens'],128)
+
+    def test_billing_error_is_specific_without_echoing_key(self):
+        from urllib.error import HTTPError
+        opener=MagicMock();opener.open.side_effect=HTTPError('https://example.com',402,'Payment Required',{},BytesIO(b'sensitive upstream text'))
+        with patch('llm.build_opener',return_value=opener):
+            with self.assertRaisesRegex(RuntimeError,'余额不足'):
+                choose_llm(replay(9,[],kind='gomoku'),{'base_url':'https://example.com/v1','model':'test','api_key':'test-secret'})
+
+    def test_truncated_output_is_not_a_move(self):
+        opener=MagicMock();opener.open.return_value=BytesIO(json.dumps({'choices':[{'finish_reason':'length','message':{'content':'{"choice":"B9"}'}}]}).encode())
+        with patch('llm.build_opener',return_value=opener):
+            with self.assertRaisesRegex(RuntimeError,'截断'):
+                choose_llm(replay(9,[0],kind='gomoku'),{'base_url':'https://example.com/v1','model':'test'})
+
 if __name__=='__main__':unittest.main()

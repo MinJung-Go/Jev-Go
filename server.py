@@ -63,13 +63,18 @@ class Handler(BaseHTTPRequestHandler):
         name,kind=assets[self.path];return self.send(200,(ROOT/'static'/name).read_bytes(),kind)
     def do_POST(self):
         if not self.trusted(): return self.send(403,{'error':'仅允许同源请求'})
-        if self.path not in ('/api/state','/api/decision','/api/payload'): return self.send(404,{'error':'Not found'})
+        if self.path not in ('/api/state','/api/decision','/api/payload','/api/llm-test'): return self.send(404,{'error':'Not found'})
         try:
             length=int(self.headers.get('Content-Length','0'))
             if not 0<length<=20000:raise ValueError('请求大小不合法')
             if 'application/json' not in self.headers.get('Content-Type',''):raise ValueError('需要JSON请求')
             body=json.loads(self.rfile.read(length))
             if not isinstance(body,dict):raise ValueError('需要JSON对象')
+            if self.path=='/api/llm-test':
+                if not LOCK.acquire(blocking=False):raise RuntimeError('已有模型请求进行中，请稍后重试')
+                try: _,decision,_,_=choose_llm(replay(5,[]),body.get('llm'))
+                finally:LOCK.release()
+                return self.send(200,{'ok':True,'model':decision['model'],'latency_ms':decision['latency_ms']})
             g=replay(body.get('size',9),body.get('moves',[]),body.get('kind','go'))
             if self.path=='/api/state':return self.send(200,g.public())
             if g.over:raise ValueError('对局已结束')

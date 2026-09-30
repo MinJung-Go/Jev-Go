@@ -24,7 +24,7 @@ function draw(){
  $('arena-settings').hidden=!arena();
  $('auto').textContent=running?'暂停对战':'开始对战';$('auto').disabled=!running&&(busy||game.over||!llmConfig||!ready);
  $('step').disabled=running||busy||game.over||!llmConfig||!ready;
- for(const id of ['black-provider','step-limit','llm-base','llm-model','llm-key','apply-llm','clear-llm'])$(id).disabled=busy||running;
+ for(const id of ['black-provider','step-limit','llm-base','llm-model','llm-key','apply-llm','clear-llm','test-llm','llm-preset'])$(id).disabled=busy||running;
  for(const id of ['pass','undo','reset','mode','size','kind'])$(id).disabled=busy||running;
  $('pass').hidden=!go||arena();$('pass').disabled=busy||running||game.over||(!human&&game.turn===2);$('undo').disabled=busy||running||!game.moves.length;
  $('retry').hidden=busy||running||arena()||game.over||human||game.turn!==2;
@@ -70,13 +70,31 @@ $('retry').onclick=async()=>{if(busy||game.turn!==2||game.over)return;busy=true;
 $('undo').onclick=async()=>{if(busy||running||!game.moves.length)return;busy=true;draw();try{let m=game.moves.slice(0,-1);if(!arena()&&$('mode').value!=='human'&&m.length%2===1)m=m.slice(0,-1);game=await api('state',{...body(),moves:m});records=records.filter(r=>r.move_number<=m.length);decision(records.at(-1)?.decision);status('已退回上一回合。')}catch(e){status(e.message,true)}finally{busy=false;draw()}};
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify({format:'jev-board-v3',black_provider:arena()?$('black-provider').value:'human',exported_at:new Date().toISOString(),mode:$('mode').value,rules:game.kind==='go'?'positional-superko,no-suicide,area,white-komi-6.5,no-dead-stone-adjudication':'freestyle-gomoku,5-or-more,no-captures,no-pass',game,records},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='jev-'+game.kind+'-record.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 $('step').onclick=arenaStep;$('auto').onclick=autoPlay;$('black-provider').onchange=reset;
-$('apply-llm').onclick=()=>{
+function applyLLM(){
+ const base=$('llm-base').value.trim().replace(/\/+$/,''),model=$('llm-model').value.trim();
+ if(!base||!model){$('llm-status').textContent='请填写 Base URL 和模型名';return false}
+ try{const u=new URL(base);if(!['http:','https:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw Error()}catch(e){$('llm-status').textContent='接口地址格式不正确';return false}
+ const sameEndpoint=llmConfig?.base_url===base;
+ const key=$('llm-key').value.trim()||(sameEndpoint?llmConfig.api_key:'');
+ if(!key&&['api.deepseek.com','api.openai.com'].includes(new URL(base).hostname)){$('llm-status').textContent='请填写该服务商的 API Key';return false}
+ llmConfig={base_url:base,model,api_key:key};$('llm-key').value='';$('llm-key').placeholder=key?'已配置；留空沿用同一地址的密钥':'本地无认证服务可留空';
+ $('llm-status').textContent=`已应用 ${model}。可先测试连接，再选择 LLM 对战 Jev。配置仅保留本页，刷新后清除。`;draw();return true;
+}
+$('apply-llm').onclick=()=>{if(!busy&&!running)applyLLM()};
+$('clear-llm').onclick=()=>{if(busy||running)return;llmConfig=null;$('llm-key').value='';$('llm-key').placeholder='';$('llm-status').textContent='配置已清除。';draw()};
+$('llm-preset').onchange=()=>{
  if(busy||running)return;
- const base=$('llm-base').value.trim(),model=$('llm-model').value.trim();
- if(!base||!model){$('llm-status').textContent='请填写 Base URL 和模型名';return}
- try{const u=new URL(base);if(!['http:','https:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw Error()}catch(e){$('llm-status').textContent='接口地址格式不正确';return}
- llmConfig={base_url:base,model,api_key:$('llm-key').value};$('llm-key').value='';
- $('llm-status').textContent=`已应用 ${model}；尚未验证接口，点击走一手测试。配置仅保留本页，修改时需重新填写密钥。`;draw();
+ llmConfig=null;$('llm-key').value='';$('llm-key').placeholder='请填写当前服务商的密钥';
+ const provider=$('llm-preset').value;
+ $('llm-base').value=provider==='deepseek'?'https://api.deepseek.com/v1':provider==='openai'?'https://api.openai.com/v1':'';
+ $('llm-model').value=provider==='deepseek'?'deepseek-flash':'';
+ $('llm-status').textContent='已切换服务商，请填写模型与密钥，重新应用配置。';draw();
 };
-$('clear-llm').onclick=()=>{if(busy||running)return;llmConfig=null;$('llm-key').value='';$('llm-status').textContent='配置已清除。';draw()};
+$('test-llm').onclick=async()=>{
+ if(busy||running||!applyLLM())return;
+ busy=true;draw();$('llm-status').textContent='正在测试接口…';
+ try{const d=await api('llm-test',{llm:llmConfig});$('llm-status').textContent=`连接成功：${d.model}，${d.latency_ms} ms。可以走一手或开始对战。`}
+ catch(e){$('llm-status').textContent=e.message}
+ finally{busy=false;draw()}
+};
 (async()=>{try{const c=await(await fetch('/api/config')).json();ready=c.jev_ready;$('mode').querySelector('[value="jev"]').disabled=!ready;$('connection').textContent=ready?'Jev 已连接配置 · '+c.model:'未配置 Jev 凭据，可先体验本地规则。';if(ready)$('mode').value='jev';await reset()}catch(e){status('无法连接服务：'+e.message,true)}})();

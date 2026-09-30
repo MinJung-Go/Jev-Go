@@ -38,15 +38,17 @@ python3 server.py
 
 ## LLM 对战 Jev
 
-在“LLM 接入”填写兼容 OpenAI Chat Completions 的 Base URL（包含 /v1 等接口前缀）、模型 ID、API Key，再点“应用配置”。支持完整 /chat/completions 地址；仅接入这一协议，不支持原生 Anthropic Messages 或 Responses API。无认证本地服务可留空 Key。
+“LLM 接入”默认选择 DeepSeek，预填 https://api.deepseek.com/v1 和 deepseek-flash；填写自己的 API Key 后点“应用配置”，再点“测试连接”。也可切换 OpenAI（预填官方 /v1 地址，模型名由用户填写）或其他 OpenAI 兼容接口。支持完整 /chat/completions 地址；仅接入这一协议，不支持原生 Anthropic Messages 或 Responses API。无认证本地服务可留空 Key。
 
 选择“LLM 对战 Jev”，选择谁执黑，先点“走一手”检查接口，再点“开始对战”。每次自动运行默认最多20手，可设为1到100；暂停等待在途请求结束，不再发下一手。双方采用同一局面、候选筛选和战术特征；没有 LLM 校准概率时显示空白，不伪造胜率。错误或非法坐标会暂停，不重试、不替换成其他模型。
 
-也支持“你对战 LLM”：用户执黑。配置仅存于当前页面内存，刷新后清除，不写入浏览器存储或导出记录；应用后会清空密钥输入框，修改配置需重新填写密钥。服务器仅把本次 LLM 凭据发送到配置的接口，不使用 Jev 密钥代替。
+也支持“你对战 LLM”：用户执黑。配置仅存于当前页面内存，刷新后清除，不写入浏览器存储或导出记录；应用后会清空密钥输入框，同一 Base URL 下重复应用或修改模型会沿用已配置密钥；切换服务商或地址后需重新填写密钥。服务器仅把本次 LLM 凭据发送到配置的接口，不使用 Jev 密钥代替。
 
 network_preview.py 默认使用 HTTP，支持 --tls-cert 和 --tls-key 启用 HTTPS。HTTP 不加密登录口令和 LLM 凭据，仅用于受信任网络中的测试；远程公开服务应配置可信 TLS 证书。入口启动时随机生成登录口令，证书、私钥与口令不应提交到仓库。
 
-验证：27项单元测试通过；浏览器使用模拟 Chat Completions 接口与真实 Jev，验证轮流落子、交换黑白、单步、自动手数上限、暂停、非法输出停止、人类对战 LLM、导出不含密钥。尚未验证用户实际配置的 LLM 服务。
+验证：30项单元测试通过；浏览器使用模拟 Chat Completions 接口与真实 Jev，验证轮流落子、交换黑白、单步、自动手数上限、暂停、非法输出停止、人类对战 LLM、导出不含密钥。已使用用户提供凭据完成真实 DeepSeek 连接测试及19路 DeepSeek执黑、Jev执白的两手对局；这只证明接入，不是棋力评测。OpenAI预设与其他兼容接口通过配置/模拟接口检查，未使用真实OpenAI凭据测试。
+
+DeepSeek 官方接口默认启用 JSON 输出、关闭思考模式并限制输出128 tokens，便于短坐标响应；这些参数只发送到 api.deepseek.com，不强加给其他兼容服务商。认证失败、余额不足、限流、模型/地址错误和输出截断分别提示原因，失败不落子。测试连接会产生少量API用量，但不改变当前棋盘。
 
 ## 网络测试入口与端口映射
 
@@ -72,7 +74,7 @@ python3 network_preview.py --port 8194 --upstream 8765
 python3 -m unittest discover -s tests -v
 ```
 
-规则及模型响应校验测试共 27 项。evidence/browser-check.json 对应初版浏览器验证；新版交互验证另见上文 LLM 对战段落，不把旧截图或旧记录当作新版测试证据。
+规则及模型响应校验测试共 30 项。evidence/browser-check.json 对应初版浏览器验证；新版交互验证另见上文 LLM 对战段落，不把旧截图或旧记录当作新版测试证据。
 
 `experiment.py --live` 会真实请求 API 并覆盖 evidence 中同名实验文件；复现前请复制整个目录保存原记录。最多请求 76 次，配置凭据后运行：
 

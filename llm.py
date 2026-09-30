@@ -32,6 +32,8 @@ def choose_llm(g,config):
     payload={'model':model.strip(),'messages':[
         {'role':'system','content':'You are a board-game decision engine. Follow the supplied rules and select exactly one offered action. Return only a JSON object with a string field "choice", for example {"choice":"D4"}. No markdown or reasoning text.'},
         {'role':'user','content':json.dumps({'state':source['state'],'instructions':question['instructions'],'criteria':criteria},ensure_ascii=False)}], 'stream':False}
+    if urlsplit(url).hostname=='api.deepseek.com':
+        payload.update(response_format={'type':'json_object'},thinking={'type':'disabled'},max_tokens=128)
     headers={'Content-Type':'application/json'}
     if key:headers['Authorization']='Bearer '+key
     request=Request(url,data=json.dumps(payload).encode(),headers=headers,method='POST')
@@ -45,10 +47,14 @@ def choose_llm(g,config):
             raw=r.read(2_000_001)
             if len(raw)>2_000_000:raise RuntimeError('LLM 响应过大，本手未落子')
             data=json.loads(raw)
-    except HTTPError as e:raise RuntimeError(f'LLM 接口 HTTP {e.code}，请检查地址、模型及凭据；本手未落子') from None
+    except HTTPError as e:
+        hint={400:'请求参数不兼容，请检查模型名及接口协议',401:'认证失败，请检查 API Key；切换服务商后需重新填写',402:'账户余额不足，请检查服务商 API 账户余额',403:'接口拒绝访问，请检查账户权限',404:'接口或模型不存在，请检查 Base URL 与模型 ID',422:'请求参数无法处理，请检查模型与接口兼容性',429:'请求频率或配额受限，请稍后手动重试',500:'模型服务内部错误',502:'模型服务网关错误',503:'模型服务暂不可用'}.get(e.code,'服务商返回错误')
+        raise RuntimeError(f'LLM HTTP {e.code}：{hint}；本手未落子') from None
     except (URLError,TimeoutError):raise RuntimeError('LLM 网络错误或超时，本手未落子') from None
     except (ValueError,UnicodeDecodeError):raise RuntimeError('LLM 响应不是有效 JSON，本手未落子') from None
     try:
+        if data['choices'][0].get('finish_reason')=='length':
+            raise RuntimeError('LLM 输出被截断，本手未落子；请检查输出长度或思考模式设置')
         content=data['choices'][0]['message']['content']
         if not isinstance(content,str):raise ValueError()
         text=content.strip()

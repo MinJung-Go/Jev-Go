@@ -22,7 +22,7 @@ class Preview(BaseHTTPRequestHandler):
         origin=self.headers.get('Origin')
         if origin and origin!=getattr(self.server,'public_scheme','http')+'://'+self.headers.get('Host',''):
             return self.error(403,'Origin rejected')
-        if self.path not in {'/','/style.css','/app.js','/api/config','/api/state','/api/decision','/api/payload'}:
+        if self.path not in {'/','/style.css','/app.js','/api/config','/api/state','/api/decision','/api/payload','/api/llm-test'}:
             return self.error(404,'Not found')
         if self.headers.get('Transfer-Encoding'):return self.error(400,'Unsupported transfer encoding')
         try:
