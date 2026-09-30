@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 from game import replay
+from llm import choose_llm
 
 ROOT=Path(__file__).parent
 MODEL='jev-1.13.0'
@@ -73,16 +74,24 @@ class Handler(BaseHTTPRequestHandler):
             if self.path=='/api/state':return self.send(200,g.public())
             if g.over:raise ValueError('对局已结束')
             if self.path=='/api/payload':return self.send(200,g.payload(MODEL))
-            if g.turn!=2:raise ValueError('模型只能在白棋回合落子')
+            mode=body.get('mode')
+            arena=body.get('arena',False)
+            if type(arena) is not bool:raise ValueError('对战模式不合法')
+            if arena:
+                black=body.get('black_provider','llm')
+                if black not in ('llm','jev'):raise ValueError('黑棋模型不合法')
+                expected=black if g.turn==1 else ('jev' if black=='llm' else 'llm')
+                if mode!=expected:raise ValueError('对战模型与当前轮次不匹配')
+            elif g.turn!=2:raise ValueError('模型只能在白棋回合落子')
             if len(g.moves)>=500:raise ValueError('达到本实验500手上限，请重开一局')
             if body.get('mode')=='local':
                 move=g.local_move();decision={'provider':'local','choice':g.coord(move),'model':'handcrafted-rules','confidence':None,'latency_ms':None}
                 payload=raw=None
-            elif body.get('mode')=='jev':
-                if not LOCK.acquire(blocking=False):raise RuntimeError('已有 Jev 请求进行中，请稍后重试')
-                try: move,decision,payload,raw=choose_jev(g)
+            elif mode in ('jev','llm'):
+                if not LOCK.acquire(blocking=False):raise RuntimeError('已有模型请求进行中，请稍后重试')
+                try: move,decision,payload,raw=choose_jev(g) if mode=='jev' else choose_llm(g,body.get('llm'))
                 finally:LOCK.release()
-            else:raise ValueError('请选择 Jev 或本地规则模式')
+            else:raise ValueError('请选择 Jev、LLM 或本地规则模式')
             g.play(move)
             return self.send(200,{'game':g.public(),'decision':decision,'request':payload,'response':raw})
         except (ValueError,TypeError) as e:return self.send(400,{'error':str(e)})

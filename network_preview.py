@@ -4,6 +4,7 @@ import base64
 import hmac
 import http.client
 import secrets
+import ssl
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 class Preview(BaseHTTPRequestHandler):
@@ -19,7 +20,7 @@ class Preview(BaseHTTPRequestHandler):
         if not hmac.compare_digest(self.headers.get('Authorization',''),self.server.authorization):
             return self.error(401,'Login required')
         origin=self.headers.get('Origin')
-        if origin and origin!='http://'+self.headers.get('Host',''):
+        if origin and origin!=getattr(self.server,'public_scheme','http')+'://'+self.headers.get('Host',''):
             return self.error(403,'Origin rejected')
         if self.path not in {'/','/style.css','/app.js','/api/config','/api/state','/api/decision','/api/payload'}:
             return self.error(404,'Not found')
@@ -29,7 +30,7 @@ class Preview(BaseHTTPRequestHandler):
             if not 0<=size<=20000:return self.error(413,'Request too large')
         except ValueError:return self.error(400,'Invalid length')
         data=self.rfile.read(size) if size else None
-        conn=http.client.HTTPConnection('127.0.0.1',self.server.upstream,timeout=35)
+        conn=http.client.HTTPConnection('127.0.0.1',self.server.upstream,timeout=75)
         try:
             conn.request(self.command,self.path,body=data,headers={'Content-Type':self.headers.get('Content-Type','application/json')})
             response=conn.getresponse();data=response.read()
@@ -48,10 +49,17 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--port',type=int,default=8766)
     parser.add_argument('--upstream',type=int,default=8765)
+    parser.add_argument('--tls-cert');parser.add_argument('--tls-key')
     args=parser.parse_args()
+    if bool(args.tls_cert)!=bool(args.tls_key):parser.error('TLS certificate and key must be supplied together')
     password=secrets.token_urlsafe(18)
     httpd=ThreadingHTTPServer(('0.0.0.0',args.port),Preview)
     httpd.authorization='Basic '+base64.b64encode(('jev:'+password).encode()).decode()
     httpd.upstream=args.upstream
+    httpd.public_scheme='https' if args.tls_cert else 'http'
+    if args.tls_cert:
+        context=ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        context.load_cert_chain(args.tls_cert,args.tls_key)
+        httpd.socket=context.wrap_socket(httpd.socket,server_side=True)
     print(f'Listening on 0.0.0.0:{args.port}; user=jev password={password}',flush=True)
     httpd.serve_forever()
