@@ -1,15 +1,15 @@
 """Small-board Go: positional superko, no suicide, area scoring, no dead-stone adjudication."""
 from copy import deepcopy
 
-COLS = 'ABCDEFGHJ'
+COLS = 'ABCDEFGHJKLMNOPQRST'
 
 class IllegalMove(ValueError):
     pass
 
 class Game:
     def __init__(self, size=9):
-        if type(size) is not int or size not in (5, 9):
-            raise ValueError('棋盘只支持 5 路或 9 路')
+        if type(size) is not int or size not in (5, 9, 13, 19):
+            raise ValueError('棋盘支持 5、9、13 或 19 路')
         self.size = size
         self.board = [0] * (size * size)
         self.turn = 1
@@ -100,7 +100,7 @@ class Game:
                 'lead':score[1]-score[2]-6.5}
 
     def public(self):
-        return dict(size=self.size, board=self.board, turn=self.turn, moves=self.moves,
+        return dict(kind="go",size=self.size, board=self.board, turn=self.turn, moves=self.moves,
                     legal=self.legal(), passes=self.passes, over=self.over,
                     captures=self.captures, area=self.area())
 
@@ -125,6 +125,16 @@ class Game:
 
     def payload(self, model='jev-1.13.0'):
         options = self.options()
+        candidate_note = '全部合法落点'
+        if len(options)>240:
+            occupied=[divmod(i,self.size) for i,v in enumerate(self.board) if v]
+            mid=(self.size-1)/2
+            def priority(item):
+                f=item[1];r,c=divmod(f['index'],self.size)
+                near=min((max(abs(r-rr),abs(c-cc)) for rr,cc in occupied),default=0)
+                return (bool(f['captures'] or f['rescued_stones']),-near,-abs(r-mid)-abs(c-mid))
+            options=dict(sorted(options.items(),key=priority,reverse=True)[:240])
+            candidate_note='代码预筛240个落点：优先提子/救子，其次距已有棋子近，再靠近中心；可能遗漏好棋，无全局搜索'
         criteria = {}
         for coord, f in options.items():
             criteria[coord] = (f'Play at {coord}. Captures {f["captures"]} opposing stones immediately; '
@@ -132,7 +142,9 @@ class Game:
                 f'rescues {f["rescued_stones"]} friendly stones from immediate atari; '
                 f'fills a point surrounded by own stones: {f["fills_surrounded_point"]}; '
                 f'distance from edge: {f["edge_distance"]}.')
-        criteria['PASS'] = 'Pass. If the previous player also passed, end and score the current board.'
+        # An explicit opening policy, not a change to legal Go moves.
+        if len(self.moves)>=self.size*2 or self.passes or not options:
+            criteria['PASS'] = 'Pass only if no useful territory, rescue or attack remains. Two passes end the game.'
         rows = [''.join('.XO'[v] for v in self.board[r*self.size:(r+1)*self.size]) for r in range(self.size)]
         return {'model':model, 'state':{'game':'Go', 'board_size':self.size,
             'board_rows_top_to_bottom':rows,'columns':list(COLS[:self.size]),
@@ -140,9 +152,11 @@ class Game:
             'legend':{'X':'black','.':'empty','O':'white'},
             'your_color':'black' if self.turn==1 else 'white',
             'previous_move_passed':self.passes==1,'white_komi':6.5,
+            'recent_moves':[{'color':'black' if k%2==0 else 'white','move':self.coord(m)} for k,m in list(enumerate(self.moves))[-10:]],
+            'candidate_policy':candidate_note+'；开局少于棋盘路数两倍手数且对方未停手、有合法落点时，候选不含PASS',
             'note':'All offered placements are legal. Arithmetic and immediate tactical features were computed by code, not by you.'},
             'questions':{'move':{'type':'choice','instructions':
-                'Choose one Go move to improve your position. Prefer saving threatened groups and useful captures; '
+                'You play the stated your_color, not always black. Select one legal move. Do not pass merely because no capture is available. Develop territory and connected groups. Prioritize saving valuable threatened groups and useful captures; '
                 'avoid self-atari and unnecessary filling of your own eyes. Consider future territory, not just immediate captures. '
                 'Pass when further play has no useful benefit. This is one-step judgment; no tree search is supplied.',
                 'criteria':criteria}}}
@@ -162,9 +176,13 @@ class Game:
         return top[2] if top[0] > 0 else None
 
 
-def replay(size, moves):
+def replay(size, moves, kind="go"):
+    if kind not in ("go","gomoku"):raise ValueError("未知棋种")
     if not isinstance(moves,list) or len(moves)>500:
         raise ValueError('棋谱必须是最多 500 手的列表')
-    g=Game(size)
+    if kind=="gomoku":
+        from gomoku import Gomoku
+        g=Gomoku(size)
+    else:g=Game(size)
     for m in moves: g.play(m)
     return g

@@ -38,7 +38,7 @@ class Rules(unittest.TestCase):
         self.assertEqual(Game(5).area()['neutral'],25)
         g=self.setup_board(['11111','10001','10001','10001','11111']);self.assertEqual(g.area()['black'],25)
     def test_payload_all_legal(self):
-        g=Game(9);p=g.payload();self.assertEqual(len(p['questions']['move']['criteria']),82)
+        g=Game(9);p=g.payload();self.assertEqual(len(p['questions']['move']['criteria']),81)
         self.assertEqual(p['state']['your_color'],'black')
     def test_local_is_legal(self):
         g=Game(5)

@@ -40,7 +40,7 @@ def choose_jev(g):
     mapping={g.coord(i):i for i in g.legal()};mapping['PASS']=None
     decision={'provider':'jev','model':data.get('model',MODEL),'choice':choice,
               'probabilities':probs,'confidence':confidence,'latency_ms':round((time.perf_counter()-started)*1000),
-              'usage':data.get('usage',{}),'candidate_count':len(criteria)}
+              'usage':data.get('usage',{}),'candidate_count':len(criteria),'assistance':payload['state'].get('candidate_policy','')}
     return mapping[choice],decision,payload,data
 
 class Handler(BaseHTTPRequestHandler):
@@ -69,10 +69,11 @@ class Handler(BaseHTTPRequestHandler):
             if 'application/json' not in self.headers.get('Content-Type',''):raise ValueError('需要JSON请求')
             body=json.loads(self.rfile.read(length))
             if not isinstance(body,dict):raise ValueError('需要JSON对象')
-            g=replay(body.get('size',9),body.get('moves',[]))
+            g=replay(body.get('size',9),body.get('moves',[]),body.get('kind','go'))
             if self.path=='/api/state':return self.send(200,g.public())
             if g.over:raise ValueError('对局已结束')
             if self.path=='/api/payload':return self.send(200,g.payload(MODEL))
+            if g.turn!=2:raise ValueError('模型只能在白棋回合落子')
             if len(g.moves)>=500:raise ValueError('达到本实验500手上限，请重开一局')
             if body.get('mode')=='local':
                 move=g.local_move();decision={'provider':'local','choice':g.coord(move),'model':'handcrafted-rules','confidence':None,'latency_ms':None}
