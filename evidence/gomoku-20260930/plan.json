@@ -1,0 +1,25 @@
+{
+  "started_at": "2026-09-30T09:31:55.065723+00:00",
+  "implementation_commit": "511e895c09ba4cd9a56664c6c6dedbd28405440c",
+  "board_size": 15,
+  "kind": "gomoku",
+  "rules": "freestyle, alternating, >=5 wins, no passes/captures/forbidden moves",
+  "max_rounds_per_game": 15,
+  "max_plies_per_game": 30,
+  "models": {
+    "llm": "deepseek-flash",
+    "jev": "jev-1.13.0"
+  },
+  "llm_settings": {
+    "thinking": "disabled",
+    "response_format": "json_object",
+    "max_tokens": 128
+  },
+  "black_providers": [
+    "llm",
+    "jev"
+  ],
+  "assistance": "Same state, instructions and criteria construction; code filters immediate wins then blocks, otherwise all legal moves with contiguous run/open end features",
+  "stopping": "Stop on win, full board, 30 plies or first error; no automatic retries; no parameter tuning between games",
+  "limitations": "Two games only; capped unfinished games are not draws; no equal compute budget; LLM model ID may be a provider alias"
+}

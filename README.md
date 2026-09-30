@@ -46,7 +46,7 @@ python3 server.py
 
 network_preview.py 默认使用 HTTP，支持 --tls-cert 和 --tls-key 启用 HTTPS。HTTP 不加密登录口令和 LLM 凭据，仅用于受信任网络中的测试；远程公开服务应配置可信 TLS 证书。入口启动时随机生成登录口令，证书、私钥与口令不应提交到仓库。
 
-验证：30项单元测试通过；浏览器使用模拟 Chat Completions 接口与真实 Jev，验证轮流落子、交换黑白、单步、自动手数上限、暂停、非法输出停止、人类对战 LLM、导出不含密钥。已使用用户提供凭据完成真实 DeepSeek 连接测试及19路 DeepSeek执黑、Jev执白的两手对局；这只证明接入，不是棋力评测。OpenAI预设与其他兼容接口通过配置/模拟接口检查，未使用真实OpenAI凭据测试。
+验证：30项单元测试通过；浏览器使用模拟 Chat Completions 接口与真实 Jev，验证轮流落子、交换黑白、单步、自动手数上限、暂停、非法输出停止、人类对战 LLM、导出不含密钥。已使用用户提供凭据完成真实 DeepSeek 连接测试及19路 DeepSeek执黑、Jev执白的两手对局；随后另做了两盘15路自由五子棋对战：DeepSeek执黑11手胜，Jev执黑9手胜；双方均有程序战术辅助，详细记录见 [五子棋对战测试](evidence/gomoku-20260930-run2/README.md)，不能据此排名棋力。OpenAI预设与其他兼容接口通过配置/模拟接口检查，未使用真实OpenAI凭据测试。
 
 DeepSeek 官方接口默认启用 JSON 输出、关闭思考模式并限制输出128 tokens，便于短坐标响应；这些参数只发送到 api.deepseek.com，不强加给其他兼容服务商。认证失败、余额不足、限流、模型/地址错误和输出截断分别提示原因，失败不落子。测试连接会产生少量API用量，但不改变当前棋盘。
 
@@ -93,7 +93,8 @@ python3 experiment.py --live
 - network_preview.py：带登录口令的 HTTP／HTTPS 网络入口。
 - static/：网页、样式、交互。
 - tests/：规则与响应校验测试。
-- experiment.py：实验计划、战术对照及双边对局。
+- experiment.py：初版围棋实验计划、战术对照及双边对局。
+- experiment_gomoku.py：通过demo接口跑交换黑白、每盘最多15轮的五子棋测试。
 - evidence/：原始请求响应、棋谱、汇总、浏览器截图。
 
 分享源码包即可让读者自行运行。包内没有 API 密钥；不要把密钥填入网页或源码后再分发。

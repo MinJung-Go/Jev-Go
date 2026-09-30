@@ -1,0 +1,64 @@
+{
+  "plan": {
+    "started_at": "2026-09-30T09:32:23.716335+00:00",
+    "implementation_commit": "511e895c09ba4cd9a56664c6c6dedbd28405440c",
+    "board_size": 15,
+    "kind": "gomoku",
+    "rules": "freestyle, alternating, >=5 wins, no passes/captures/forbidden moves",
+    "max_rounds_per_game": 15,
+    "max_plies_per_game": 30,
+    "models": {
+      "llm": "deepseek-flash",
+      "jev": "jev-1.13.0"
+    },
+    "llm_settings": {
+      "thinking": "disabled",
+      "response_format": "json_object",
+      "max_tokens": 128
+    },
+    "black_providers": [
+      "llm",
+      "jev"
+    ],
+    "assistance": "Same state, instructions and criteria construction; code filters immediate wins then blocks, otherwise all legal moves with contiguous run/open end features",
+    "stopping": "Stop on win, full board, 30 plies or first error; no automatic retries; no parameter tuning between games",
+    "limitations": "Two games only; capped unfinished games are not draws; no equal compute budget; LLM model ID may be a provider alias"
+  },
+  "matches": [
+    {
+      "black_provider": "llm",
+      "plies": 11,
+      "completed_rounds": 5,
+      "winner": "llm",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    }
+  ],
+  "providers": {
+    "llm": {
+      "successful_calls": 10,
+      "median_latency_ms": 2279.0,
+      "total_latency_ms": 20779,
+      "single_candidate_calls": 1,
+      "filtered_tactical_calls": 2
+    },
+    "jev": {
+      "successful_calls": 10,
+      "median_latency_ms": 1150.5,
+      "total_latency_ms": 10662,
+      "single_candidate_calls": 1,
+      "filtered_tactical_calls": 2
+    }
+  },
+  "finished_at": "2026-09-30T09:32:55.699022+00:00"
+}
