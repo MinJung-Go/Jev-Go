@@ -1,0 +1,309 @@
+{
+  "plan": {
+    "started_at": "2026-09-30T09:51:39.472236+00:00",
+    "implementation_commit": "708783053f50333a3cbff8a21eb8c1024b9a99b1",
+    "board_size": 15,
+    "kind": "gomoku",
+    "rules": "freestyle, alternating, >=5 wins, no passes/captures/forbidden moves",
+    "max_plies_per_game": 225,
+    "models": {
+      "llm": "deepseek-flash",
+      "jev": "jev-1.13.0"
+    },
+    "llm_settings": {
+      "thinking": "disabled",
+      "response_format": "json_object",
+      "max_tokens": 128
+    },
+    "black_providers": [
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev",
+      "llm",
+      "jev"
+    ],
+    "assistance": "Same state, instructions and criteria construction; code filters immediate wins then blocks, otherwise all legal moves with contiguous run/open end features",
+    "stopping": "Stop on win, full board or first error; no automatic retries; no parameter tuning between games",
+    "limitations": "Repeated empty-board games only; errors are not losses; no equal compute budget; LLM model ID may be a provider alias"
+  },
+  "matches": [
+    {
+      "game": 1,
+      "black_provider": "llm",
+      "plies": 2,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 3,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 2,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 3,
+      "black_provider": "llm",
+      "plies": 2,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 3,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 4,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 5,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 6,
+      "black_provider": "jev",
+      "plies": 3,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 4,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 7,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 8,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 9,
+      "black_provider": "llm",
+      "plies": 11,
+      "completed_rounds": 5,
+      "winner": "llm",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 10,
+      "black_provider": "jev",
+      "plies": 3,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 4,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 11,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 12,
+      "black_provider": "jev",
+      "plies": 14,
+      "completed_rounds": 7,
+      "winner": "llm",
+      "winner_color": 2,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 13,
+      "black_provider": "llm",
+      "plies": 2,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 3,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 14,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 15,
+      "black_provider": "llm",
+      "plies": 2,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 3,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 16,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 17,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 18,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 19,
+      "black_provider": "llm",
+      "plies": 12,
+      "completed_rounds": 6,
+      "winner": "jev",
+      "winner_color": 2,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 20,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    }
+  ],
+  "providers": {
+    "llm": {
+      "successful_calls": 61,
+      "median_latency_ms": 1881,
+      "total_latency_ms": 115241,
+      "single_candidate_calls": 3,
+      "filtered_tactical_calls": 11
+    },
+    "jev": {
+      "successful_calls": 69,
+      "median_latency_ms": 1151,
+      "total_latency_ms": 77103,
+      "single_candidate_calls": 8,
+      "filtered_tactical_calls": 10
+    }
+  },
+  "results": {
+    "llm": 2,
+    "jev": 8,
+    "draws": 0,
+    "errors": 10
+  },
+  "finished_at": "2026-09-30T09:55:14.518253+00:00"
+}

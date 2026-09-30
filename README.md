@@ -94,7 +94,11 @@ python3 experiment.py --live
 - static/：网页、样式、交互。
 - tests/：规则与响应校验测试。
 - experiment.py：初版围棋实验计划、战术对照及双边对局。
-- experiment_gomoku.py：通过demo接口跑交换黑白、每盘最多15轮的五子棋测试。
+- experiment_gomoku.py：通过demo接口批量跑五子棋，默认20局、交替黑白，每局到成五或满盘，错误单独记录；--games 可配置局数。
 - evidence/：原始请求响应、棋谱、汇总、浏览器截图。
 
 分享源码包即可让读者自行运行。包内没有 API 密钥；不要把密钥填入网页或源码后再分发。
+
+## 新增20局批量测试
+
+各执黑10局，10局正常结束：Jev8胜、DeepSeek2胜；另外10局因DeepSeek输出未通过校验而中断，不算输棋。完成局先手分布不均，不据此推断总体棋力胜率。详见[逐局结果与证据](evidence/gomoku-20260930-20games/README.md)。
