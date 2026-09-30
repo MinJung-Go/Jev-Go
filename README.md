@@ -102,3 +102,5 @@ python3 experiment.py --live
 ## 新增20局批量测试
 
 各执黑10局，10局正常结束：Jev8胜、DeepSeek2胜；另外10局因DeepSeek输出未通过校验而中断，不算输棋。完成局先手分布不均，不据此推断总体棋力胜率。详见[逐局结果与证据](evidence/gomoku-20260930-20games/README.md)。
+
+随后按原黑白分配重下中断10局：DeepSeek新增4胜，6局再次中断。合并原已完成局为Jev8胜、DeepSeek6胜，另6局未完成；见[补赛记录](evidence/gomoku-20260930-replay1/README.md)。

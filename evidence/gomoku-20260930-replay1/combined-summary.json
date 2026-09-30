@@ -1,0 +1,235 @@
+{
+  "results": {
+    "jev_wins": 8,
+    "deepseek_wins": 6,
+    "draws": 0,
+    "unresolved": 6
+  },
+  "matches": [
+    {
+      "game": 1,
+      "black_provider": "llm",
+      "plies": 13,
+      "completed_rounds": 6,
+      "winner": "llm",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 2,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 3,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 4,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 5,
+      "black_provider": "llm",
+      "plies": 11,
+      "completed_rounds": 5,
+      "winner": "llm",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 6,
+      "black_provider": "jev",
+      "plies": 18,
+      "completed_rounds": 9,
+      "winner": "llm",
+      "winner_color": 2,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 7,
+      "black_provider": "llm",
+      "plies": 2,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 3,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 8,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 9,
+      "black_provider": "llm",
+      "plies": 11,
+      "completed_rounds": 5,
+      "winner": "llm",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 10,
+      "black_provider": "jev",
+      "plies": 3,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 4,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 11,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 12,
+      "black_provider": "jev",
+      "plies": 14,
+      "completed_rounds": 7,
+      "winner": "llm",
+      "winner_color": 2,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 13,
+      "black_provider": "llm",
+      "plies": 2,
+      "completed_rounds": 1,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 3,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 14,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 15,
+      "black_provider": "llm",
+      "plies": 4,
+      "completed_rounds": 2,
+      "winner": null,
+      "winner_color": null,
+      "stop_reason": "error",
+      "error": {
+        "ply": 5,
+        "provider": "llm",
+        "detail": "{\"error\": \"LLM 未返回有效候选坐标 JSON，本手未落子；可手动重试\"}"
+      }
+    },
+    {
+      "game": 16,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 17,
+      "black_provider": "llm",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "llm",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 18,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 19,
+      "black_provider": "llm",
+      "plies": 12,
+      "completed_rounds": 6,
+      "winner": "jev",
+      "winner_color": 2,
+      "stop_reason": "win",
+      "error": null
+    },
+    {
+      "game": 20,
+      "black_provider": "jev",
+      "plies": 9,
+      "completed_rounds": 4,
+      "winner": "jev",
+      "winner_color": 1,
+      "stop_reason": "win",
+      "error": null
+    }
+  ],
+  "method": "Original completed games kept; interrupted games replaced by this replay attempt. All original failures remain in source records."
+}
