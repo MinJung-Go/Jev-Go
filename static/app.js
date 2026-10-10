@@ -24,7 +24,7 @@ function draw(){
  $('arena-settings').hidden=!arena();
  $('auto').textContent=running?'暂停对战':'开始对战';$('auto').disabled=!running&&(busy||game.over||!llmConfig||!ready);
  $('step').disabled=running||busy||game.over||!llmConfig||!ready;
- for(const id of ['black-provider','step-limit','llm-base','llm-model','llm-key','apply-llm','clear-llm','test-llm','llm-preset'])$(id).disabled=busy||running;
+ for(const id of ['black-provider','step-limit','llm-base','llm-model','llm-key','apply-llm','clear-llm','test-llm','llm-preset','llm-auth'])$(id).disabled=busy||running;
  for(const id of ['pass','undo','reset','mode','size','kind'])$(id).disabled=busy||running;
  $('pass').hidden=!go||arena();$('pass').disabled=busy||running||game.over||(!human&&game.turn===2);$('undo').disabled=busy||running||!game.moves.length;
  $('retry').hidden=busy||running||arena()||game.over||human||game.turn!==2;
@@ -74,10 +74,13 @@ function applyLLM(){
  const base=$('llm-base').value.trim().replace(/\/+$/,''),model=$('llm-model').value.trim();
  if(!base||!model){$('llm-status').textContent='请填写 Base URL 和模型名';return false}
  try{const u=new URL(base);if(!['http:','https:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw Error()}catch(e){$('llm-status').textContent='接口地址格式不正确';return false}
- const sameEndpoint=llmConfig?.base_url===base;
+ const auth=$('llm-auth').value;
+ if(auth==='aep'&&!base.endsWith('/decisions')){$('llm-status').textContent='AEP 认证需使用完整 /decisions 地址';return false}
+ if(new URL(base).hostname==='api.openai.com'&&(auth!=='bearer'||!base.startsWith('https://'))){$('llm-status').textContent='OpenAI 官方接口请使用 HTTPS 和 Bearer 认证';return false}
+ const sameEndpoint=llmConfig?.base_url===base&&llmConfig?.auth_type===auth;
  const key=$('llm-key').value.trim()||(sameEndpoint?llmConfig.api_key:'');
  if(!key&&['api.deepseek.com','api.openai.com'].includes(new URL(base).hostname)){$('llm-status').textContent='请填写该服务商的 API Key';return false}
- llmConfig={base_url:base,model,api_key:key};$('llm-key').value='';$('llm-key').placeholder=key?'已配置；留空沿用同一地址的密钥':'本地无认证服务可留空';
+ llmConfig={base_url:base,model,api_key:key,auth_type:auth};$('llm-key').value='';$('llm-key').placeholder=key?'已配置；留空沿用同一地址的密钥':'本地无认证服务可留空';
  $('llm-status').textContent=`已应用 ${model}。可先测试连接，再选择 LLM 对战 Jev。配置仅保留本页，刷新后清除。`;draw();return true;
 }
 $('apply-llm').onclick=()=>{if(!busy&&!running)applyLLM()};
@@ -86,8 +89,9 @@ $('llm-preset').onchange=()=>{
  if(busy||running)return;
  llmConfig=null;$('llm-key').value='';$('llm-key').placeholder='请填写当前服务商的密钥';
  const provider=$('llm-preset').value;
- $('llm-base').value=provider==='deepseek'?'https://api.deepseek.com/v1':provider==='openai'?'https://api.openai.com/v1':'';
- $('llm-model').value=provider==='deepseek'?'deepseek-flash':'';
+ $('llm-auth').value='bearer';
+ $('llm-base').value=provider==='openai-decisions'?'https://api.openai.com/v1/decisions':provider==='deepseek'?'https://api.deepseek.com/v1':provider==='openai'?'https://api.openai.com/v1':'';
+ $('llm-model').value=provider==='openai-decisions'?'gpt-6-luna':provider==='deepseek'?'deepseek-flash':'';
  $('llm-status').textContent='已切换服务商，请填写模型与密钥，重新应用配置。';draw();
 };
 $('test-llm').onclick=async()=>{

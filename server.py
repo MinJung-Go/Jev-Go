@@ -21,6 +21,9 @@ def choose_jev(g):
     key=os.environ.get('TYPESAFE_API_KEY')
     if not key: raise RuntimeError('尚未配置 TYPESAFE_API_KEY。可选择本地规则练习，但它不是 Jev。')
     payload=g.payload(MODEL)
+    from game import forced_candidate
+    forced=forced_candidate(g,payload)
+    if forced:return forced
     request=Request(API,data=json.dumps(payload).encode(),headers={
         'Authorization':'Bearer '+key,'Content-Type':'application/json'},method='POST')
     started=time.perf_counter()

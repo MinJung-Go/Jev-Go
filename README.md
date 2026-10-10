@@ -1,6 +1,6 @@
 # Jev Go
 
-围棋（默认19路，可选13/9/5路）与自由五子棋（15/9路）的网页实验。Python 3.10+，无第三方 Python 依赖。模型固定 jev-1.13.0；规则由代码执行，Jev 与可配置 LLM 从程序提供的候选动作中选择，候选可能经过筛选。
+围棋（默认19路，可选13/9/5路）与自由五子棋（15/9路）的网页实验。Python 3.10+，无第三方 Python 依赖；Decisions 接口另需系统 curl。模型固定 jev-1.13.0；规则由代码执行，Jev 与可配置 LLM 从程序提供的候选动作中选择，候选可能经过筛选。
 
 ## 界面
 
@@ -38,7 +38,7 @@ python3 server.py
 
 ## LLM 对战 Jev
 
-“LLM 接入”默认选择 DeepSeek，预填 https://api.deepseek.com/v1 和 deepseek-flash；填写自己的 API Key 后点“应用配置”，再点“测试连接”。也可切换 OpenAI（预填官方 /v1 地址，模型名由用户填写）或其他 OpenAI 兼容接口。支持完整 /chat/completions 地址；仅接入这一协议，不支持原生 Anthropic Messages 或 Responses API。无认证本地服务可留空 Key。
+“LLM 接入”默认选择 DeepSeek，预填 https://api.deepseek.com/v1 和 deepseek-flash；填写自己的 API Key 后点“应用配置”，再点“测试连接”。也可切换 OpenAI Decisions（预填官方 /v1/decisions 地址与 gpt-6-luna）、OpenAI Chat Completions 或其他兼容接口。支持完整 /chat/completions 或 /decisions 地址；不支持原生 Anthropic Messages 或 Responses API。无认证本地服务可留空 Key。
 
 选择“LLM 对战 Jev”，选择谁执黑，先点“走一手”检查接口，再点“开始对战”。每次自动运行默认最多20手，可设为1到100；暂停等待在途请求结束，不再发下一手。双方采用同一局面、候选筛选和战术特征；没有 LLM 校准概率时显示空白，不伪造胜率。错误或非法坐标会暂停，不重试、不替换成其他模型。
 
@@ -104,3 +104,32 @@ python3 experiment.py --live
 各执黑10局，10局正常结束：Jev8胜、DeepSeek2胜；另外10局因DeepSeek输出未通过校验而中断，不算输棋。完成局先手分布不均，不据此推断总体棋力胜率。详见[逐局结果与证据](evidence/gomoku-20260930-20games/README.md)。
 
 随后按原黑白分配重下中断10局：DeepSeek新增4胜，6局再次中断。合并原已完成局为Jev8胜、DeepSeek6胜，另6局未完成；见[补赛记录](evidence/gomoku-20260930-replay1/README.md)。
+
+## OpenAI 官方 Decisions 接入
+
+在页面选择 **OpenAI Decisions（gpt-6-luna）**，自动填入 `https://api.openai.com/v1/decisions` 和 `gpt-6-luna`。认证方式保持 **Bearer**，填写自己的 OpenAI API Key，应用配置后测试连接。官方接口发送 `Authorization: Bearer`，不会发送 AEP 认证头。
+
+其他 Decisions 服务可填写完整 `/decisions` 地址，默认也使用 Bearer。只有连接 AEP 时才显式选择“AEP 消费者密钥”，发送 `X-AEP-CONSUMER-SECRET`；官方域名拒绝此模式。切换地址或认证方式不会沿用先前密钥。
+
+此适配使用系统 `curl`，不改变已有 Chat Completions 配置。升级后需重启服务并刷新页面。拒答、无效候选和错误概率都不会落子；唯一候选由程序执行并单独标记。
+
+协议依据：[OpenAI Decisions 官方文档](https://developers.openai.com/api/docs/guides/decisions)。官方 Bearer、请求结构、拒答和错误分支已通过模拟测试；未提供官方 OpenAI API Key，因此没有将 AEP 实测记为官方直连验证。
+
+适配复用 Jev 的棋盘、指令和候选描述，校验返回坐标、概率范围及概率和。失败不落子、不自动重试。密钥不进入棋谱或进程参数。
+
+
+验证：40项单元测试通过，覆盖 Bearer/AEP 认证隔离、请求结构、候选及概率校验、拒答、HTTP错误与唯一候选处理；浏览器模拟后端验证官方预设、配置提交、密钥清空及原有服务商切换。尚无官方直连实测，不将 AEP 测试当作官方接口测试。
+
+## 批量对局脚本
+
+experiment_decisions_unlimited.py 支持50盘5路围棋、双方各执黑25盘，没有手数上限，连续两次停手才算完成。逐手保存检查点，相同输出目录可恢复；接口连续五次失败会暂停该盘并保留状态，不判负。
+
+当前实验脚本保留原 AEP 认证配置，需要 TYPESAFE_API_KEY、AEP_CONSUMER_SECRET、OPENAI_API_BASE。官方接入可通过网页使用；这些历史脚本不代表官方直连测试。
+
+```bash
+python3 experiment_decisions_unlimited.py --live --output evidence/decisions-new-50games --workers 4
+```
+
+experiment_decisions.py 和 experiment_decisions_batch.py 保留早期的100手上限。需要下到自然终局时使用 unlimited 入口。
+
+本次提交仅包含适配代码、测试、运行脚本及说明，新增实验棋谱未公开上传。

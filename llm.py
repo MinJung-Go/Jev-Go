@@ -24,6 +24,9 @@ def endpoint(base):
 
 def choose_llm(g,config):
     if not isinstance(config,dict):raise ValueError('请先配置 LLM')
+    if config.get('protocol')=='decisions' or str(config.get('base_url','')).rstrip('/').endswith('/decisions'):
+        from decisions import choose_decisions
+        return choose_decisions(g,config)
     url=endpoint(config.get('base_url',''))
     model=config.get('model','');key=config.get('api_key','')
     if not isinstance(model,str) or not model.strip() or len(model)>200:raise ValueError('请填写模型名称')

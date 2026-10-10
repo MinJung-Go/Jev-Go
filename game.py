@@ -186,3 +186,16 @@ def replay(size, moves, kind="go"):
     else:g=Game(size)
     for m in moves: g.play(m)
     return g
+
+
+def forced_candidate(g, source):
+    """No model decision exists when the candidate set is a singleton."""
+    criteria=source['questions']['move']['criteria']
+    if len(criteria)!=1:return None
+    choice=next(iter(criteria))
+    mapping={g.coord(i):i for i in g.legal()}
+    mapping['PASS']=None
+    decision={'provider':'rules','model':'forced-single-candidate','choice':choice,
+              'confidence':None,'probabilities':None,'latency_ms':0,'usage':{},
+              'candidate_count':1,'forced':True,'assistance':'Only one offered legal action; executed by rules, not a model call.'}
+    return mapping[choice],decision,source,{'forced':True,'choice':choice}
